@@ -25,7 +25,7 @@ XML
 
 MANIFEST_MF = <<-MANIFEST
 Manifest-Version: 1.0
-Created-By: jruby.rake/PT Inovação
+Created-By: jruby.rake
 MANIFEST
 
 BUILD_DIR = "tmp/war"
