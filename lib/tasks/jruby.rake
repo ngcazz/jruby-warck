@@ -28,6 +28,8 @@ Manifest-Version: 1.0
 Created-By: jruby.rake
 MANIFEST
 
+RUNNING_FROM = Dir.pwd
+
 BUILD_DIR = "tmp/war"
 WEB_INF   = BUILD_DIR + "/WEB-INF"
 META_INF  = BUILD_DIR + "/META-INF"
@@ -64,6 +66,16 @@ namespace :jruby do
 
     public_files.each do |file|
       cp file, file.pathmap("%{public,#{BUILD_DIR}}d/%f")
+    end
+
+    puts "++ Creating war file #{Dir.pwd.pathmap("%f")}.war"
+
+    Zip::ZipFile.open(RUNNING_FROM + "/#{Dir.pwd.pathmap("%f")}.war", Zip::ZipFile::CREATE) do |zip|
+      Dir.chdir(BUILD_DIR)
+      Dir["**/"].each { |d| zip.mkdir(d, 0444) }
+      FileList["**/*"].exclude { |f| File.directory?(f) }.each { |f| zip.add(f, f) }
+
+      zip.close
     end
   end
 
