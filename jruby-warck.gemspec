@@ -1,6 +1,7 @@
+require 'lib/jruby-warck/version.rb'
 Gem::Specification.new do |s|
   s.name        = "jruby-warck"
-  s.version     = "0.1"#`git symbolic-ref HEAD 2> /dev/null | cut -b 12-` << `git log --pretty=format:\"%h\" -1` 
+  s.version     = JrubyWarck::VERSION.version 
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Nuno Correia"]
   s.email       = ["nbettencourt@gmail.com"]
@@ -12,5 +13,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "rubyzip"
  
   s.files        = Dir.glob("{bin,lib}/**/*") + %w(README.md)
+  s.executables  << 'warck'
   s.require_path = 'lib'
 end
