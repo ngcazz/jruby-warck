@@ -1,14 +1,14 @@
 require 'rake'
 require 'jruby-warck/version'
 require 'jruby-warck/constants'
-require 'jruby-warck/tools'
+require 'jruby-warck/manipulations'
 
 require 'zip/zip'
 require 'erb'
 
 class JrubyWarck::Application < Rake::Application
   include JrubyWarck::Constants
-  include JrubyWarck::Tools
+  include JrubyWarck::Manipulations
   include Rake::DSL
 
   def name
